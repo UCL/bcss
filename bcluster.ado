@@ -29,7 +29,7 @@ if `minpi'<0 | `maxpi'>1 & `maxpi'!=. {
 
 
 * n
-if `n'<0 | `n'>1,000,000 & `n'!=. { 
+if `n'<0 | `n'>1000 & `n'!=. { 
 	di as err "n is out of range"
 	exit 198
 }
@@ -41,7 +41,7 @@ if `rho'<0 | `rho'>0.1 & `rho'!=. {
 }
 
 *m
-if `m'<0 | `m'>1,000,000 & `m'!=. { 
+if `m'<0 | `m'>1000 & `m'!=. { 
 	di as err "m is out of range"
 	exit 198
 }
