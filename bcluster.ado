@@ -52,18 +52,23 @@ if `m'<0 | `m'>1000000 & `m'!=. {
 //determine what type of graph the user is wanting to compute
 		
 	local type = 0 			// type identifies whether prospective (1) or retrospective (2) or nothing (0) was selected
-	if "`prospective'" ~= "" {
+	if  "`prospective'" ~= "" & "`retrospective'" ~= "" {
+	
+         di as error "Either pro *or* ret must be specified, for prospective or retrospective baseine data respectively."
+	     exit 198
+}
+	else if "`prospective'" ~= "" {
 		local type = 1
 	}
 	else if "`retrospective'" ~= "" {
 		local type = 2
 	}
-
+	
 	
 if `type' == 0 {
 
 di as error "Either pro or ret must be specified, for prospective or retrospective baseine data respectively."
-
+exit 198
 }
 	
 else if `type' == 1 {					// prospective
