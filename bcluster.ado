@@ -11,7 +11,7 @@ capture program drop bcluster
 program define bcluster, rclass
 version 15
 syntax , N(integer) Rho(real) M(integer) Pilist(numlist) [PROspective RETrospective]
-
+* Also I will add in an option for the user to specify the graph axes ranges
 
 * Range checks
 ****************
@@ -29,20 +29,18 @@ if `minpi'<0 | `maxpi'>1 & `maxpi'!=. {
 
 
 * n
-//if `n'<0 | `n'>1000 & `n'!=. { 
 if `n'<0 | `n'>1000000 & `n'!=. { 
 	di as err "n is out of range"
 	exit 198
 }
 
 * rho
-if `rho'<0 | `rho'>0.1 & `rho'!=. { 
+if `rho'<0 | `rho'>1 & `rho'!=. { 
 	di as err "rho is out of range"
 	exit 198
 }
 
 *m
-//if `m'<0 | `m'>1000 & `m'!=. { 
 if `m'<0 | `m'>1000000 & `m'!=. { 
 	di as err "m is out of range"
 	exit 198
