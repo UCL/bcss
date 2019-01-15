@@ -11,7 +11,7 @@ capture program drop bcluster
 program define bcluster, rclass
 version 15
 syntax , N(integer) Rho(real) M(integer) Pilist(numlist) [PROspective RETrospective]
-
+* Kevin test edit
 
 * Range checks
 ****************
