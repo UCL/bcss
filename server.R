@@ -1,47 +1,93 @@
+################################################################################### 
+#server side  (ie the logic) program for Shiny 
+# R (Shiny) prog to plot interactive chart for cRCTs with varying baseline data
+# R shiny app to accompany \"Cluster randomised trials with baseline data:sample size and optimal designs\" ,Copas and Hooper
+# Author: Kevin McGrath
+####################################################################################
+
+# https://stackoverflow.com/questions/38372906/constrain-two-sliderinput-in-shiny-to-sum-to-100
+
 
 library(shiny)
 library(ggplot2)
 library(plotly)
 library(shinyjs)
 
-server <- function(input,output){
+server <- function(input,output,session){
   
   
-  eq9<-function(x){ 1 - ((input$WCC*input$WCC*input$rho*input$rho*input$n*input$n*x)/((1+((input$n-1)*input$rho))*(1+((((input$n*x))-1)*input$rho)))) } 
-  eq <-function(x){ 1 - ((0.5*0.5*input$rho*input$rho*input$n*input$n*x)/((1+((input$n-1)*input$rho))*(1+((((input$n*x))-1)*input$rho)))) }
+  # eq,eq9 for retrospective 
+  eq9<-function(x){ 1 - ((input$WCC[1]*input$WCC[1]*input$rho1*input$rho1*input$n_retro*input$n_retro*x)/((1+((input$n_retro-1)*input$rho1))*(1+((((input$n_retro*x))-1)*input$rho1)))) } 
+  eq <-function(x){ 1 - ((input$WCC[2]*input$WCC[2]*input$rho1*input$rho1*input$n_retro*input$n_retro*x)/((1+((input$n_retro-1)*input$rho1))*(1+((((input$n_retro*x))-1)*input$rho1)))) }
   #try this for proportion it works!
-  eqprop9<-function(x){ (1-input$rho+(input$n*input$rho*(1-x)))*(1/(1-x))*(1-((input$WCC*input$WCC*input$rho*input$rho*input$n*input$n*x*(1-x))/((1+(((input$n*(1-x))-1)*input$rho))*(1+(((input$n*x)-1)*input$rho)))))/(1+((input$n-1)*input$rho)) }
-  eqprop<-function(x){ (1-input$rho+(input$n*input$rho*(1-x)))*(1/(1-x))*(1-((0.5*0.5*input$rho*input$rho*input$n*input$n*x*(1-x))/((1+(((input$n*(1-x))-1)*input$rho))*(1+(((input$n*x)-1)*input$rho)))))/(1+((input$n-1)*input$rho)) }
+  eqprop9<-function(x){ (1-input$rho1+(input$n*input$rho1*(1-x)))*(1/(1-x))*(1-((input$WCC[1]*input$WCC[1]*input$rho1*input$rho1*input$n*input$n*x*(1-x))/((1+(((input$n*(1-x))-1)*input$rho1))*(1+(((input$n*x)-1)*input$rho1)))))/(1+((input$n-1)*input$rho1)) }
+  eqprop<-function(x){ (1-input$rho1+(input$n*input$rho1*(1-x)))*(1/(1-x))*(1-((input$WCC[2]*input$WCC[2]*input$rho1*input$rho1*input$n*input$n*x*(1-x))/((1+(((input$n*(1-x))-1)*input$rho1))*(1+(((input$n*x)-1)*input$rho1)))))/(1+((input$n-1)*input$rho1)) }
   
-  # Rat fun as baseline in paper
+# forscale 0.1 to 1  need to use rho2
+  # eq,eq9 for retrospective 
+  R2eq9<-function(x){ 1 - ((input$WCC[1]*input$WCC[1]*input$rho2*input$rho2*input$n_retro*input$n_retro*x)/((1+((input$n_retro-1)*input$rho2))*(1+((((input$n_retro*x))-1)*input$rho2)))) } 
+  R2eq <-function(x){ 1 - ((input$WCC[2]*input$WCC[2]*input$rho2*input$rho2*input$n_retro*input$n_retro*x)/((1+((input$n_retro-1)*input$rho2))*(1+((((input$n_retro*x))-1)*input$rho2)))) }
+  #try this for proportion it works!
+  R2eqprop9<-function(x){ (1-input$rho2+(input$n*input$rho2*(1-x)))*(1/(1-x))*(1-((input$WCC[1]*input$WCC[1]*input$rho2*input$rho2*input$n*input$n*x*(1-x))/((1+(((input$n*(1-x))-1)*input$rho2))*(1+(((input$n*x)-1)*input$rho2)))))/(1+((input$n-1)*input$rho2)) }
+  R2eqprop<-function(x){ (1-input$rho2+(input$n*input$rho2*(1-x)))*(1/(1-x))*(1-((input$WCC[2]*input$WCC[2]*input$rho2*input$rho2*input$n*input$n*x*(1-x))/((1+(((input$n*(1-x))-1)*input$rho2))*(1+(((input$n*x)-1)*input$rho2)))))/(1+((input$n-1)*input$rho2)) }
   
-  #  eqRat9<-function(x){( 1 - input$rho+(input$n*input$rho*(1-x)))*(1/(1-x))*(1-input$WCC*input$WCC*input$rho*input$rho*input$n*input$n*x*(1-x))/((1+(((input$n*(1-x))-1)*input$rho))*(1+(((input$n*x)-1)*input$rho)))))/(1+((input$n-1)*input$rho)) }
   
+ 
+  #output$value <-renderPrint({input$rho1}) 
+  output$range <- renderPrint({ input$WCC })
   
-  # wrongeqRat <-function(x){ 1 - ((0.5*0.5*input$rho*input$rho*input$n*input$n*x)/((1+((input$n-1)*input$rho))*(1+((((input$n*x))-1)*input$rho)))) }   
-  
-  #sizearg <- paste("size= ",input$n)
-  output$plot2 <- renderPlot({ if ( input$select=="1") { 
-    ggplot(data.frame(x=c(0,2)),aes(x=x))+ggtitle(paste("size=",input$n," ICC=",input$rho," WCC=",input$WCC))+
-      theme(plot.title = element_text(face="plain",size=12),legend.position = "top") +xlab("Baseline data - proportion of total") + ylab("Proportionate change in clusters required") + #stat_function(fun=eq,geom="line",colour="red"  )+stat_function(fun=eq9,geom="line",colour="blue")+
-      stat_function(fun=eqprop,geom="line",aes(colour="0.5"))+stat_function(fun=eqprop9,geom="line",aes(colour=" "))  +
-      coord_cartesian(ylim=c(0,input$ytop)) + scale_colour_manual("WCC",values=c("green","orange")) }                       
-    #ggplotly(p_eq) }
-    else if (input$select=="2") { 
-      ggplot(data.frame(x=c(0,2)),aes(x=x))+ggtitle(paste("size =",input$n,"ICC = ",input$rho))+
-        theme(plot.title = element_text(face="bold"))+ xlab("Baseline data - ratio to main trial data") + ylab("Proportionate change in clusters required") + stat_function(fun=eq,geom="line",colour="red"  )+stat_function(fun=eq9,geom="line",colour="blue")+
-        # stat_function(fun=eqprop,geom="line",colour="green")+stat_function(fun=eqprop9,geom="line",colour="orange")  +
-        coord_cartesian(ylim=c(0,input$ytop))
-    } 
-    
-    #  coord_cartesian(ylim=c(0,input$ytop)) scale_colour_manual("WCC",values=c("green","orange")) }
-    
-    # output$plot2 <- renderPlot({
-    #    ggplot(data.frame(x=c(0,12)),aes(x=x))+ggtitle("Proportionate change #clusters required by ratio additional baseline to endline data")+ xlab("Baseline data - ratio to main trial data") + ylab("Proportionate change in clusters required") + stat_function(fun=eq,geom="line",colour="red"  )+stat_function(fun=eq9,geom="line",colour="blue")+
-    #      stat_function(fun=eqprop,geom="line",colour="green")+stat_function(fun=eqprop9,geom="line",colour="orange")  +
-    #      coord_cartesian(ylim=c(0,input$ytop))
-    
-    
-  })
-  
+  # prospective is select==1
+  output$plot2 <- renderPlot({ if ( (input$select=="1")   & (input$whichscale=="1") ) { 
+    ggplot(data.frame(x=c(0,1)),aes(x=x))+ggtitle(paste("size=",input$n," ICC=",input$rho1," WCC=",input$WCC[1]," ",input$WCC[2]))+
+      theme(plot.title = element_text(face="plain",size=12),panel.background=element_blank(),axis.line = element_line(colour="black")) +xlab("Baseline data - proportion of total") + ylab("Proportionate change in clusters required") + 
+      stat_function(fun=eqprop,geom="line",aes(colour="high WCC") )+stat_function(fun=eqprop9,geom="line",aes(colour="low WCC") )  +
+      coord_cartesian(ylim=c(0,input$ytop))  + scale_colour_manual("", values = c("red", "blue")) }                       
+    else if (( input$select=="1") & (input$whichscale=="2") ) { 
+    ggplot(data.frame(x=c(0,1)),aes(x=x))+ggtitle(paste("size=",input$n," ICC=",input$rho2," WCC=",input$WCC[1]," ",input$WCC[2]))+
+      theme(plot.title = element_text(face="plain",size=12),panel.background=element_blank(),axis.line = element_line(colour="black")) +xlab("Baseline data - proportion of total") + ylab("Proportionate change in clusters required") + 
+      stat_function(fun=R2eqprop,geom="line",aes(colour="high WCC" ))+stat_function(fun=R2eqprop9,geom="line",aes(colour="low WCC") )  +
+      coord_cartesian(ylim=c(0,input$ytop)) + scale_colour_manual("", values = c("red", "blue")) }                       
+    else if ((input$select=="2") & (input$whichscale=="1")) { 
+      ggplot(data.frame(x=c(0,1)),aes(x=x))+ggtitle(paste("size =",input$n_retro,"ICC = ",input$rho1,"WCC=",input$WCC[1]," ",input$WCC[2]))+
+        theme(plot.title = element_text(face="plain"),panel.background=element_blank(),axis.line = element_line(colour="black"))+ xlab("Baseline data - ratio to main trial data") + ylab("Proportionate change in clusters required") + stat_function(fun=eq,geom="line",aes(colour="high WCC")  )+stat_function(fun=eq9,geom="line",aes(colour="low WCC"))+
+        coord_cartesian(ylim=c(0,input$ytop)) + scale_colour_manual("", values = c("green", "orange")) }
+    else if ((input$select=="2") & (input$whichscale=="2")) {
+      ggplot(data.frame(x=c(0,1)),aes(x=x))+ggtitle(paste("size =",input$n_retro,"ICC = ",input$rho2,"WCC=",input$WCC[1]," ",input$WCC[2]))+
+        theme(plot.title = element_text(face="plain"),panel.background=element_blank(),axis.line = element_line(colour="black"))+ xlab("Baseline data - ratio to main trial data") + ylab("Proportionate change in clusters required") + stat_function(fun=R2eq,geom="line",aes(colour="high WCC") )+stat_function(fun=R2eq9,geom="line",aes(colour="low WCC"))+
+        coord_cartesian(ylim=c(0,input$ytop)) + scale_colour_manual("", values = c("green", "orange")) }
+    }
+    ) 
+
+# for prospective, calculate optimal value of x, try 
+# https://stackoverflow.com/questions/40997817/reactive-variables-in-shiny-for-later-calculations
+
+  #output the optimal point for pospective data , select = 1
+  output$text_calc <- renderText({  if (( input$select=="1") & ( input$whichscale=="1") )  {
+     n <-input$n
+     rho1 <-input$rho1
+     WCC <- input$WCC
+     paste("Optimal (x,y) = (", round((n*rho1*WCC+rho1-1)/(rho1*n*(1+WCC)),digits=4),",", round(eqprop(n*rho1*WCC+rho1-1)/(rho1*n*(1+WCC)),digits=4),")  ") } 
+    else if (( input$select=="1") & ( input$whichscale=="2") ) {
+      n <-input$n
+      rho2 <-input$rho2
+      WCC <- input$WCC
+    paste("Optimal (x,y) = (", round((n*rho2*WCC+rho2-1)/(rho2*n*(1+WCC)),digits=4),",", round(eqprop(n*rho2*WCC+rho2-1)/(rho2*n*(1+WCC)),digits=4),")  ")  }
+  }) 
+   
 }
+        
+  
+#https://stackoverflow.com/questions/38917101/how-do-i-show-the-y-value-on-tooltip-while-hover-in-ggplot2
+  #output$vals <- renderPrint({
+   # hover <- input$plot_hover 
+    ## print(str(hover)) # list
+    #y <- nearPoints(iris, input$plot_hover)[input$var_y]
+    #req(nrow(y) != 0)
+    #y
+    #})
+  
+#https://gitlab.com/snippets/16220
+  
+ 
+
+
