@@ -10,8 +10,8 @@
 
 library(shiny)
 library(ggplot2)
-library(plotly)
-library(shinyjs)
+#library(plotly)
+#library(shinyjs)
 
 server <- function(input,output,session){
   
@@ -65,13 +65,27 @@ server <- function(input,output,session){
   output$text_calc <- renderText({  if (( input$select=="1") & ( input$whichscale=="1") )  {
      n <-input$n
      rho1 <-input$rho1
-     WCC <- input$WCC
-     paste("Optimal (x,y) = (", round((n*rho1*WCC+rho1-1)/(rho1*n*(1+WCC)),digits=4),",", round(eqprop(n*rho1*WCC+rho1-1)/(rho1*n*(1+WCC)),digits=4),")  ") } 
+     WCC1 <- input$WCC[1]
+     WCC2 <- input$WCC[2]
+     opt_x <- round((n*rho1*WCC1+rho1-1)/(rho1*n*(1+WCC1)),digits=4)
+     opt_y <- round(eqprop9(opt_x),digits=4)
+     opt_x2 <- round((n*rho1*WCC2+rho1-1)/(rho1*n*(1+WCC2)),digits=4)
+     opt_y2 <- round(eqprop(opt_x2),digits=4)
+     paste("Optimal (x,y) = (", opt_x,",",opt_y," ), (", opt_x2,",",opt_y2," )")}   
+     #paste("Optimal (x,y) = (", opt_x2,",",opt_y2," ),")  }
+     #paste("Optimal (x,y) = (", round((n*rho1*WCC1+rho1-1)/(rho1*n*(1+WCC1)),digits=4),",", round(eqprop(n*rho1*WCC1+rho1-1)/(rho1*n*(1+WCC1)),digits=4),")  ")  
+    #paste("Optimal (x,y) = (", round((n*rho1*WCC2+rho1-1)/(rho1*n*(1+WCC2)),digits=4),",", round(eqprop9(n*rho1*WCC2+rho1-1)/(rho1*n*(1+WCC2)),digits=4),")  ") } 
     else if (( input$select=="1") & ( input$whichscale=="2") ) {
       n <-input$n
       rho2 <-input$rho2
-      WCC <- input$WCC
-    paste("Optimal (x,y) = (", round((n*rho2*WCC+rho2-1)/(rho2*n*(1+WCC)),digits=4),",", round(eqprop(n*rho2*WCC+rho2-1)/(rho2*n*(1+WCC)),digits=4),")  ")  }
+      WCC1 <- input$WCC[1]
+      WCC2 <- input$WCC[2]
+      opt_x <- round((n*rho2*WCC1+rho2-1)/(rho2*n*(1+WCC1)),digits=4)
+      opt_y <- round(R2eqprop9(opt_x),digits=4)
+      opt_x2 <- round((n*rho2*WCC2+rho2-1)/(rho2*n*(1+WCC2)),digits=4)
+      opt_y2 <- round(R2eqprop(opt_x2),digits=4)
+      paste("Optimal (x,y) = (", opt_x,",",opt_y," ), (", opt_x2,",",opt_y2," )")} 
+      #paste("Optimal (x,y) = (", round((n*rho2*WCC+rho2-1)/(rho2*n*(1+WCC)),digits=4),",", round(eqprop(n*rho2*WCC+rho2-1)/(rho2*n*(1+WCC)),digits=4),")  ")  }
   }) 
    
 }

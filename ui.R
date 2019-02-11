@@ -17,8 +17,8 @@
 
 library(shiny)
 library(ggplot2)
-library(plotly)
-library(shinyjs)
+#library(plotly)
+#library(shinyjs)
 ui <- fluidPage(
   titlePanel(title = h4("R shiny app to accompany \"Cluster randomised trials with baseline data:sample size and optimal designs\" ,Copas and Hooper")),
  sidebarPanel(
