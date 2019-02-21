@@ -1,0 +1,724 @@
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\rmjlem1\Desktop\My_files\Andrew_Copas_baseline_data_for_CRT\testing\bcss_error_msg.log
+  log type:  text
+ opened on:  21 Feb 2019, 11:55:22
+
+. 
+. bcss, pi(0.5 0.6 0.7) rho(0.01)
+Either pro or ret must be specified, for prospective or retrospective baseine data respectively.
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) pr
+option pr not allowed
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) re
+option re not allowed
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) ret
+Endline must be specified for retrospective baseine data.
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) ret total(200)
+Endline must be specified for retrospective baseine data.
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) ret total(200) endline(200)
+Total must be blank for retrospective baseine data.
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) ret endline(200) total(200)
+Total must be blank for retrospective baseine data.
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) ret endline(200) pxmin
+option pxmin not allowed
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) pro
+Total must be specified for prospective baseine data.
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) pro endline(200)
+Total must be specified for prospective baseine data.
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) pro total(200) endline(200)
+Endline must be blank for prospective baseine data.
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) pro endline(200) total(200)
+Endline must be blank for prospective baseine data.
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. * Out of range values of pi
+. bcss, rho(0.01) pro total(200)
+option pilist() required
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(-0.1) rho(0.01) pro total(200)
+pi is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(1.1) rho(0.01) pro total(200)
+pi is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(1000) rho(0.01) pro total(200)
+pi is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(-0.1 0.1) rho(0.01) pro total(200)
+pi is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 100000) rho(0.01) pro total(200)
+pi is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(-0.1 1.1) rho(0.01) pro total(200)
+pi is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, rho(0.01) ret endline(200)
+option pilist() required
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(-0.1) rho(0.01) ret endline(200)
+pi is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(1.1) rho(0.01) ret endline(200)
+pi is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(1000) rho(0.01) ret endline(200)
+pi is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(-0.1 0.1) rho(0.01) ret endline(200)
+pi is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 100000) rho(0.01) ret endline(200)
+pi is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(-0.1 1.1) rho(0.01) ret endline(200)
+pi is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. * Out of range values of rho
+. bcss, pi(0.5 0.7 0.9) pro total(200)
+option rho() required
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.7 0.9) rho(-0.1) pro total(200)
+rho is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.7 0.9) rho(1.1) pro total(200)
+rho is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.7 0.9) rho(10000) pro total(200)
+rho is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.7 0.9) rho(0.01 0.05) pro total(200)
+option rho() invalid
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.7 0.9) ret endline(200)
+option rho() required
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.7 0.9) rho(-0.1) ret endline(200)
+rho is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.7 0.9) rho(1.1) ret endline(200)
+rho is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.7 0.9) rho(10000) ret endline(200)
+rho is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.7 0.9) rho(0.01 0.05) ret endline(200)
+option rho() invalid
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. * Out of range values of endline/total
+. bcss, pi(0.5 0.7 0.9) rho(0.01) pro 
+Total must be specified for prospective baseine data.
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.7 0.9) rho(0.01) pro total(-100)
+total is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.7 0.9) rho(0.01) pro total(0)
+Total must be specified for prospective baseine data.
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.7 0.9) rho(0.01) pro total(1000001) propxaxis(0 0.5) propyaxis(0 1) propystep(0.2)
+total is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.7 0.9) rho(0.01) pro total(200 300)
+option total() incorrectly specified
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.7 0.9) rho(0.01) ret 
+Endline must be specified for retrospective baseine data.
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.7 0.9) rho(0.01) ret endline(-100)
+endline is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.7 0.9) rho(0.01) ret endline(0)
+Endline must be specified for retrospective baseine data.
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.7 0.9) rho(0.01) ret endline(1000001) propxaxis(0 0.5) propyaxis(0 1) propystep(0.2)
+endline is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.7 0.9) rho(0.01) ret endline(200 300)
+option endline() incorrectly specified
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. * Axes: if one is specified then all must be
+. bcss, pi(0.5 0.6 0.7) rho(0.01) pro total(200) propxaxis(0 0.5)
+All prospective axis options must be specified: propxaxis() propyaxis() propystep()
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) pro total(200) propxaxis(0 0.5) propyaxis(1 1.25)
+All prospective axis options must be specified: propxaxis() propyaxis() propystep()
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. *bcss, pi(0.5 0.6 0.7) rho(0.01) pro total(200) propxaxis(0 0.5) propyaxis(1 1.25) propystep(0.05) // how it should be 
+. bcss, pi(0.5 0.6 0.7) rho(0.01) ret endline(200) retxaxis(0 2)
+All retrospective axis options must be specified: retxaxis() retyaxis() retystep()
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) ret endline(200) retxaxis(0 2) retyaxis(0 1)
+All retrospective axis options must be specified: retxaxis() retyaxis() retystep()
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. * Axes: user putting incorrect number of arguments in to each axis option
+. bcss, pi(0.5 0.6 0.7) rho(0.01) pro total(200) propxaxis(0.5)
+propxaxis() invalid -- invalid numlist has too few elements
+r(122);
+
+end of do-file
+
+r(122);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) pro total(200) propxaxis(0 0.5 1)
+propxaxis() invalid -- invalid numlist has too many elements
+r(123);
+
+end of do-file
+
+r(123);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) pro total(200) propyaxis(1)
+propyaxis() invalid -- invalid numlist has too few elements
+r(122);
+
+end of do-file
+
+r(122);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) pro total(200) propyaxis(1 1.25 1.5)
+propyaxis() invalid -- invalid numlist has too many elements
+r(123);
+
+end of do-file
+
+r(123);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) pro total(200) propystep(0.05 1)
+propystep() invalid -- single number required
+r(123);
+
+end of do-file
+
+r(123);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) ret endline(200) retxaxis(2)
+retxaxis() invalid -- invalid numlist has too few elements
+r(122);
+
+end of do-file
+
+r(122);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) ret endline(200) retxaxis(0 2 3)
+retxaxis() invalid -- invalid numlist has too many elements
+r(123);
+
+end of do-file
+
+r(123);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) ret endline(200) retyaxis(1)
+retyaxis() invalid -- invalid numlist has too few elements
+r(122);
+
+end of do-file
+
+r(122);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) ret endline(200) retyaxis(0 1 2)
+retyaxis() invalid -- invalid numlist has too many elements
+r(123);
+
+end of do-file
+
+r(123);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) ret endline(200) retystep(0.1 0.2)
+retystep() invalid -- single number required
+r(123);
+
+end of do-file
+
+r(123);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. * Axes: incorrect values for x axis
+. bcss, pi(0.5 0.6 0.7) rho(0.01) pro total(200) propxaxis(-0.5 0.5) propyaxis(1 1.25) propystep(0.05)
+prospective x axis is out of range; needs to be between 0 and 1
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) pro total(200) propxaxis(0 1.5) propyaxis(1 1.25) propystep(0.05)
+prospective x axis is out of range; needs to be between 0 and 1
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) pro total(200) propxaxis(-0.5 1.5) propyaxis(1 1.25) propystep(0.05)
+prospective x axis is out of range; needs to be between 0 and 1
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) pro total(200) propxaxis(1.5 -0.5) propyaxis(1 1.25) propystep(0.05)
+prospective x axis is out of range; needs to be between 0 and 1
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) pro total(200) propxaxis(0.5 0) propyaxis(1 1.25) propystep(0.05) // swops them round as required
+
+. 
+end of do-file
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) pro total(200) propxaxis(0 0) propyaxis(1 1.25) propystep(0.05)  
+prospective x axis is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) ret endline(200) retxaxis(-0.5 2) retyaxis(0 1) retystep(0.1)
+retrospective x axis is out of range; needs to be >=0
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) ret endline(200) retxaxis(2 -0.5) retyaxis(0 1) retystep(0.1)
+retrospective x axis is out of range; needs to be >=0
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) ret endline(200) retxaxis(-0.5 -1) retyaxis(0 1) retystep(0.1)
+retrospective x axis is out of range; needs to be >=0
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) ret endline(200) retxaxis(2 0) retyaxis(0 1) retystep(0.1)  // swops them round as required
+
+. 
+end of do-file
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. bcss, pi(0.5 0.6 0.7) rho(0.01) ret endline(200) retxaxis(0 0) retyaxis(0 1) retystep(0.1) 
+retrospective x axis is out of range
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "C:\Users\rmjlem1\AppData\Local\Temp\STD1638_000000.tmp"
+
+. log close
+      name:  <unnamed>
+       log:  C:\Users\rmjlem1\Desktop\My_files\Andrew_Copas_baseline_data_for_CRT\testing\bcss_error_msg.log
+  log type:  text
+ closed on:  21 Feb 2019, 11:58:43
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
