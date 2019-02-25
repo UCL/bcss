@@ -44,7 +44,7 @@ server <- function(input,output,session){
       ggplot(data.frame(x=c(0,1)),aes(x=x,colour=legends))+ggtitle(paste("size=",input$n," ICC=",input$rho1," pi=",input$WCC[1]," ",input$WCC[2]))+
       theme(plot.title = element_text(face="plain",size=12),panel.background=element_blank(),axis.line = element_line(colour="black")) +xlab("Baseline data - proportion of total") + ylab("Proportionate change in clusters required") + 
       stat_function(fun=eqprop,geom="line",aes(colour=legends) )+stat_function(fun=eqprop9,geom="line",aes(colour=legends),colour="red" )  +
-      coord_cartesian(ylim=c(0.9,input$ytop))  + scale_colour_manual("", values = c("red", "blue")) } #+geom_point(data=opt_dat,size=4 ) }                       
+      coord_cartesian(ylim=c(0.5,input$ytop))  + scale_colour_manual("", values = c("red", "blue")) } #+geom_point(data=opt_dat,size=4 ) }                       
     else if (( input$select=="1") & (input$whichscale=="2") ) { 
     ggplot(data.frame(x=c(0,1)),aes(x=x,colour=legends))+ggtitle(paste("size=",input$n," ICC=",input$rho2," pi=",input$WCC[1]," ",input$WCC[2]))+
       theme(plot.title = element_text(face="plain",size=12),panel.background=element_blank(),axis.line = element_line(colour="black")) +xlab("Baseline data - proportion of total") + ylab("Proportionate change in clusters required") + 
