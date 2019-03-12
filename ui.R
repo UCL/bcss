@@ -4,10 +4,6 @@
 # R shiny app to accompany \"Cluster randomised trials with baseline data:sample size and optimal designs\" ,Copas and Hooper
 # Author: Kevin McGrath
 ####################################################################################
-#test git
-#NO tabs
-#x axis proportion
-# try to give user option of using 2 scales for ICC  0-1 or 0-0.1, easier than logify scale.
 
 
 #https://stackoverflow.com/questions/32969659/shiny-reactive-ggplot-output
@@ -17,8 +13,7 @@
 
 library(shiny)
 library(ggplot2)
-#library(plotly)
-#library(shinyjs)
+
 ui <- fluidPage(
   titlePanel(title = h4("R shiny app to accompany \"Cluster randomised trials with baseline data:sample size and optimal designs\" ,Copas and Hooper")),
  sidebarPanel(
@@ -37,8 +32,8 @@ ui <- fluidPage(
     conditionalPanel(
       condition = "input.whichscale == '2'",
       sliderInput("rho2","intra-correlation:", min=0.1,max=1,step=0.01,value=0.1)
-                )
-    ,
+                ),
+    
   
   # Create table output
   #https://stackoverflow.com/questions/38372906/constrain-two-sliderinput-in-shiny-to-sum-to-100
@@ -52,7 +47,7 @@ ui <- fluidPage(
   #conditionalPanel(condition="input.conditionedPanels==1",
   selectInput("select", label = ("What would you like to calculate?"), 
               choices = list("prospective baseline data collection" = 1, 
-                             "retrospective baseline data collection" = 2), selected = 1),
+                             "retrospective baseline data collection" = 2), selected = 2),
   
   
   #only show this scale if prospective data chosen
@@ -63,9 +58,15 @@ ui <- fluidPage(
                  min = 10,
                  max=1000,
                  step = 10,
-                 value = 200)
-    ),
-  #only show this scale if retrospective data chosen
+                 value = 200),
+    numericInput("ytop",
+                   "Size of y-axis:",
+                   min = 0,
+                   max=10,
+                   step = 0.1,
+                   value = 2)),
+  
+      #only show this scale if retrospective data chosen
   conditionalPanel(
     condition = "input.select == '2'",
     numericInput("n_retro",
@@ -73,15 +74,9 @@ ui <- fluidPage(
                  min = 10,
                  max=1000,
                  step = 10,
-                 value=200)
-  ),
-  numericInput("ytop",
-               "Size of y-axis:",
-               min = 0,
-               max=10,
-               step = 0.1,
-               value = 2)
- ),  
+                 value=200)  ) ),
+  #only show this scale if prospective data chosen
+ 
 #for debugging
 #  verbatimTextOutput("value"),
 # verbatimTextOutput("range"),

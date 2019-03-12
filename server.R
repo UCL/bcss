@@ -1,5 +1,5 @@
 ################################################################################### 
-#server side  (ie the logic) program for Shiny 
+# server side  (ie the logic) program for Shiny 
 # R (Shiny) prog to plot interactive chart for cRCTs with varying baseline data
 # R shiny app to accompany \"Cluster randomised trials with baseline data:sample size and optimal designs\" ,Copas and Hooper
 # Author: Kevin McGrath
@@ -31,9 +31,7 @@ server <- function(input,output,session){
   R2eqprop9<-function(x){ (1-input$rho2+(input$n*input$rho2*(1-x)))*(1/(1-x))*(1-((input$WCC[1]*input$WCC[1]*input$rho2*input$rho2*input$n*input$n*x*(1-x))/((1+(((input$n*(1-x))-1)*input$rho2))*(1+(((input$n*x)-1)*input$rho2)))))/(1+((input$n-1)*input$rho2)) }
   R2eqprop<-function(x){ (1-input$rho2+(input$n*input$rho2*(1-x)))*(1/(1-x))*(1-((input$WCC[2]*input$WCC[2]*input$rho2*input$rho2*input$n*input$n*x*(1-x))/((1+(((input$n*(1-x))-1)*input$rho2))*(1+(((input$n*x)-1)*input$rho2)))))/(1+((input$n-1)*input$rho2)) }
  
-   
-  
-  
+ 
   #output$value <-renderPrint({input$rho1}) 
   output$range <- renderPrint({ input$WCC })
   
@@ -53,11 +51,11 @@ server <- function(input,output,session){
     else if ((input$select=="2") & (input$whichscale=="1")) { 
       ggplot(data.frame(x=c(0,1)),aes(x=x,colour=legends))+ggtitle(paste("size =",input$n_retro,"ICC = ",input$rho1,"pi=",input$WCC[1]," ",input$WCC[2]))+
         theme(plot.title = element_text(face="plain"),panel.background=element_blank(),axis.line = element_line(colour="black"))+ xlab("Baseline data - ratio to main trial data") + ylab("Proportionate change in clusters required") + stat_function(fun=eq,geom="line",aes(colour=legends)  )+stat_function(fun=eq9,geom="line",colour="green",aes(colour=legends))+
-        coord_cartesian(ylim=c(0,input$ytop)) + scale_colour_manual("", values = c("green", "orange")) }
+        coord_cartesian(ylim=c(0,1)) + scale_colour_manual("", values = c("green", "orange")) }
     else if ((input$select=="2") & (input$whichscale=="2")) {
       ggplot(data.frame(x=c(0,1)),aes(x=x,colour=legends))+ggtitle(paste("size =",input$n_retro,"ICC = ",input$rho2,"pi=",input$WCC[1]," ",input$WCC[2]))+
         theme(plot.title = element_text(face="plain"),panel.background=element_blank(),axis.line = element_line(colour="black"))+ xlab("Baseline data - ratio to main trial data") + ylab("Proportionate change in clusters required") + stat_function(fun=R2eq,geom="line",aes(colour=legends) )+stat_function(fun=R2eq9,geom="line",colour="green",aes(colour=legends))+
-        coord_cartesian(ylim=c(0,input$ytop)) + scale_colour_manual("", values = c("green", "orange")) }
+        coord_cartesian(ylim=c(0,1)) + scale_colour_manual("", values = c("green", "orange")) }
     }
     ) 
 
