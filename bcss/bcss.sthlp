@@ -1,22 +1,16 @@
+
 {smcl}
-{* *! version 1.0 19 Feb 2019}{...}
-{vieweralsosee "" "--"}{...}
-{vieweralsosee "Install command2" "ssc install command2"}{...}
-{vieweralsosee "Help command2 (if installed)" "help command2"}{...}
-{viewerjumpto "Syntax" "C:\ado\personal\b\bcss##syntax"}{...}
-{viewerjumpto "Description" "C:\ado\personal\b\bcss##description"}{...}
-{viewerjumpto "Options" "C:\ado\personal\b\bcss##options"}{...}
-{viewerjumpto "Remarks" "C:\ado\personal\b\bcss##remarks"}{...}
-{viewerjumpto "Examples" "C:\ado\personal\b\bcss##examples"}{...}
+{* *! version 1.0.1 2 April 2019}{...}
+
 {title:Title}
 {phang}
-{bf:C:\ado\personal\b\bcss} {hline 2} a command to create graphs for baseline data cluster sample size (prospective or retrospective data collection)
+{bf:bcss} {hline 2} a command to create graphs for baseline data cluster sample size (prospective or retrospective data collection)
 
 {marker syntax}{...}
 {title:Syntax}
 {p 8 17 2}
-{cmdab:C:\ado\personal\b\bcss}
-[{cmd:,}
+{cmdab:bcss}
+[{cmd:bcss,}
 {it:options}]
 
 {synoptset 20 tabbed}{...}
@@ -27,7 +21,7 @@
 
 {pstd}
 {p_end}
-{synopt:{opt r:ho(#)}}  the the intra-cluster correlation (ICC).
+{synopt:{opt r:ho(#)}}  the intra-cluster correlation (ICC).
 
 {pstd}
 {p_end}
@@ -39,15 +33,15 @@
 
 {pstd}
 {p_end}
-{synopt:{opt propx:axis(numlist min=2  max=2)}}  the min and max ranges of the x axis for prospecitve baseline data graphs (proportions).
+{synopt:{opt propx:axis(numlist min=2  max=2)}}  the min and max ranges of the x axis for prospective baseline data graphs (proportions).
 
 {pstd}
 {p_end}
-{synopt:{opt propy:axis(numlist min=2  max=2)}}  the min and max ranges of the y axis for prospecitve baseline data graphs.
+{synopt:{opt propy:axis(numlist min=2  max=2)}}  the min and max ranges of the y axis for prospective baseline data graphs.
 
 {pstd}
 {p_end}
-{synopt:{opt propys:tep(numlist max=1)}}  the step on the y axis for prospecitve baseline data graphs.
+{synopt:{opt propys:tep(numlist max=1)}}  the step on the y axis for prospective baseline data graphs.
 
 {pstd}
 {p_end}
@@ -71,6 +65,10 @@
 
 {pstd}
 {p_end}
+{synopt:{opt leg:endoptions(string)}}  user defined legend options, such as position and size.
+
+{pstd}
+{p_end}
 {synoptline}
 {p2colreset}{...}
 {p 4 6 2}
@@ -85,6 +83,9 @@
 
 {pstd}
  The user must specify either prospective (and total) or retrospective (and endline) in the syntax for prospective or retrospective baseline data collection respectively.
+ 
+{pstd}
+Prospective baseline data are measurements taken as part of the trial,  retrospective data are measurements taken in addition to the trial.
 
 {pstd}
  The x axes values on the prospective data graphs are proportions.
@@ -94,6 +95,9 @@
 
 {pstd}
  The user can choose to change the graph axes, however if one axis range is specified then the corresponding axis must also be specified (e.g. if the user selects certain x axis values, then they must also select the corresponding y axis values).
+
+{pstd}
+The legend position and size can be changed by the user, using standard legend syntax within legendoptions().
 
 {pstd}
  Theta opt is the optimum proportion of baseline measurements to maximise power, shown on the prospective data graphs as θ_opt=(mρπ+ρ-1)/[ρm(1+π) where m = "total" = n_b+n_e
@@ -112,6 +116,12 @@
 
 {pstd}
    bcss, pi(0.5 0.6 0.7) rho(0.01) ret endline(200) retxaxis(0 2) retyaxis(0 1) retystep(0.1)
+    
+{pstd}
+   with user defined legend options:
+      
+{pstd}
+   bcss, pi(0.5 0.6 0.7) rho(0.01) pro total(200) propxaxis(0 0.5) propyaxis(1 1.25) propystep(0.05) leg(pos(5) size(small))
 
 
 {title:References}
