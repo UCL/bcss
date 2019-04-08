@@ -1,3 +1,6 @@
+*! version 1.0.1 EMZ 02April2019  Changed Theta_opt so that if it is negative, it will be set to zero.  Changed the graph legend so that only theta opt is shown (not the corresponding y value) 
+*                                 and it is written out as 'optimal theta' (instead of 'θ_opt') Changed y axis title to be 'Ratio of clusters required'.  Added in ledgend option (legendoptions) so
+*                                 that the user can change the options of the legend, for example it's position on the graph.                          
 *! version 1.0.0 EMZ 21feb2019
 * bcss: Baseline data Cluster Sample Size
 * A program to generate plots examining the impact of varying amount of prospective/retrospective baseline data collection on cluster sample size with
@@ -21,7 +24,7 @@ program define bcss, rclass
 version 15
 
 syntax , PIlist(numlist) Rho(real) [PROspective Total(int 0) PROPXaxis(numlist min=2 max=2) PROPYaxis(numlist min=2 max=2) PROPYStep(numlist max=1)/*
-                                */ RETrospective Endline(int 0) RETXaxis(numlist min=2 max=2) RETYaxis(numlist min=2 max=2) RETYStep(numlist max=1)]
+                                */ RETrospective Endline(int 0) RETXaxis(numlist min=2 max=2) RETYaxis(numlist min=2 max=2) RETYStep(numlist max=1) LEGendoptions(string)]
 								
 * Range checks
 ****************
@@ -211,6 +214,8 @@ local graph_n 1
 	 
 	    // make theta opt and corresponding y-value
 		local theta_opt`graph_n' = ((`total' * `rho' * `pi') + `rho' -1)/((`rho' * `total')*(1 + `pi'))
+		* if theta opt is negative, then set to 0 as per Andrew Copas' instructions
+		if `theta_opt`graph_n''<0 local theta_opt`graph_n' = 0
 		local ytheta_opt`graph_n' = (1-`rho'+(`total'*`rho'*(1-`theta_opt`graph_n'')))*(1/(1-`theta_opt`graph_n''))*(1-((`pi'*`pi'*`rho'*`rho'*`total'*`total'*`theta_opt`graph_n''*(1-`theta_opt`graph_n''))/((1+(((`total'*(1-`theta_opt`graph_n''))-1)*`rho'))*(1+(((`total'*`theta_opt`graph_n'')-1)*`rho')))))/(1+((`total'-1)*`rho'))
 		local roundtheta_opt`graph_n': di %5.3f `theta_opt`graph_n''
 		local roundytheta_opt`graph_n': di %5.3f `ytheta_opt`graph_n''
@@ -220,7 +225,8 @@ local graph_n 1
         
 		
         // Make graph
-        local graphcommand "function `call', range(`pxmin' `pxmax') ylabel(`pymin'(`pystep')`pymax') color("scheme p`graph_colour'") || (scatteri `roundytheta_opt`graph_n'' `roundtheta_opt`graph_n'', mcolor("scheme p`graph_colour'") msymbol(d)), legend(on label(`graph_n' "pi =`pi'") label(`graph_nplus1' "θ_opt = (`roundtheta_opt`graph_n'' , `roundytheta_opt`graph_n'')") pos(10) ring(0) forcesize symxsize(8) symysize(1) rowgap(1) size(small) colgap(1) symplacement(left) textfirst cols(1) colfirst)"
+		if "`legendoptions'"=="" local legendoptions "pos(10) ring(0) forcesize symxsize(8) symysize(1) rowgap(1) size(small) colgap(1) symplacement(left) textfirst cols(1) colfirst"
+        local graphcommand "function `call', range(`pxmin' `pxmax') ylabel(`pymin'(`pystep')`pymax') color("scheme p`graph_colour'") || (scatteri `roundytheta_opt`graph_n'' `roundtheta_opt`graph_n'', mcolor("scheme p`graph_colour'") msymbol(d)), legend(on label(`graph_n' "pi =`pi'") label(`graph_nplus1' "Optimal theta = `roundtheta_opt`graph_n''") `legendoptions' )"
        
 		// overlay graphs 
 		local aggregate_graphcommand `aggregate_graphcommand' `graphcommand' ||
@@ -231,7 +237,7 @@ local graph_n 1
 		
 		}
 		   
-graph twoway `aggregate_graphcommand' , ytitle("Proportionate change in clusters required") xtitle("Baseline data - proportion of total") 
+graph twoway `aggregate_graphcommand' , ytitle("Ratio of clusters required") xtitle("Baseline data - proportion of total") 
 
 }
 			
@@ -294,7 +300,8 @@ local graph_n 1
         
 		
         // Make graph
-        local graphcommand2 "function `call', range(`rxmin' `rxmax') yscale(range(`rxmin')) ylabel(`rymin'(`rystep')`rymax') color("scheme p`graph_colour'") , legend(on label(`graph_n' "pi =`pi'") pos(7) ring(0) forcesize symxsize(8) symysize(1) rowgap(1) size(small) colgap(1) symplacement(left) textfirst cols(1) colfirst)"
+		if "`legendoptions'"=="" local legendoptions "pos(7) ring(0) forcesize symxsize(8) symysize(1) rowgap(1) size(small) colgap(1) symplacement(left) textfirst cols(1) colfirst"
+        local graphcommand2 "function `call', range(`rxmin' `rxmax') yscale(range(`rxmin')) ylabel(`rymin'(`rystep')`rymax') color("scheme p`graph_colour'") , legend(on label(`graph_n' "pi =`pi'") `legendoptions')"
        
 		// overlay graphs 
 		local aggregate_graphcommand2 `aggregate_graphcommand2' `graphcommand2' ||
@@ -304,7 +311,7 @@ local graph_n 1
 		
 		}
 		   
-graph twoway `aggregate_graphcommand2' , title("size=`endline', ICC=`rho'") ytitle("Proportionate change in clusters required") xtitle("Baseline data - ratio to endline data")  			
+graph twoway `aggregate_graphcommand2' , title("size=`endline', ICC=`rho'") ytitle("Ratio of clusters required") xtitle("Baseline data - ratio to endline data")  			
 			
 }			
 			
