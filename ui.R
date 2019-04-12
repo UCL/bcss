@@ -47,7 +47,7 @@ ui <- fluidPage(
   #conditionalPanel(condition="input.conditionedPanels==1",
   selectInput("select", label = ("What would you like to calculate?"), 
               choices = list("prospective baseline data collection" = 1, 
-                             "retrospective baseline data collection" = 2), selected = 2),
+                             "retrospective baseline data collection" = 2), selected = 1),
   
   
   #only show this scale if prospective data chosen

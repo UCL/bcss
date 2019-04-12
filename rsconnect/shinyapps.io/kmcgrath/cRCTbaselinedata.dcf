@@ -5,9 +5,9 @@ account: kmcgrath
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 640358
-bundleId: 1934024
+bundleId: 1997531
 url: https://kmcgrath.shinyapps.io/cRCTbaselinedata/
-when: 1552408702.86092
+when: 1554808236.4755
 asMultiple: FALSE
 asStatic: FALSE
-ignoredFiles: AndrewCopasArticle draft8 Xsect (4).docx|bcluster.ado|RBaseline.R|RE baseline project.msg|RplotsnotabsOption.R
+ignoredFiles: AndrewCopasArticle draft8 Xsect (4).docx|RBaseline.R|RplotsnotabsOption.R|bcss
