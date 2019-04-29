@@ -1,7 +1,13 @@
-*! version 1.0.1 EMZ 02April2019  Changed Theta_opt so that if it is negative, it will be set to zero.  Changed the graph legend so that only theta opt is shown (not the corresponding y value) 
-*                                 and it is written out as 'optimal theta' (instead of 'θ_opt') Changed y axis title to be 'Ratio of clusters required'.  Added in ledgend option (legendoptions) so
-*                                 that the user can change the options of the legend, for example it's position on the graph.                          
-*! version 1.0.0 EMZ 21feb2019
+*! version 1.0.1 EMZ 02April2019  
+*	Changed Theta_opt so that if it is negative, it will be set to zero.  
+*	Changed the graph legend so that only theta opt is shown (not the corresponding y value) 
+*		and it is written out as 'optimal theta' (instead of 'θ_opt') 
+*	Changed y axis title to be 'Ratio of clusters required'.  
+*	Added in legend option (legendoptions) so that the user can change the options of the legend, 
+*		for example its position on the graph.                          
+
+* version 1.0.0 EMZ 21feb2019
+
 * bcss: Baseline data Cluster Sample Size
 * A program to generate plots examining the impact of varying amount of prospective/retrospective baseline data collection on cluster sample size with
 * different cluster autocorrelation and intra-cluster correlation values

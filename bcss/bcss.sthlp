@@ -8,10 +8,27 @@
 
 {marker syntax}{...}
 {title:Syntax}
+{phang}
+Prospective data collection:
+
 {p 8 17 2}
-{cmdab:bcss}
-[{cmd:bcss,}
-{it:options}]
+{cmdab:bcss},
+{opt pi:list(numlist)}
+{opt r:ho(#)} 
+{opt pro:spective}
+{opt t:otal(#)}
+[{it:other_options}]
+
+{phang}
+Retrospective data collection:
+
+{p 8 17 2}
+{cmdab:bcss},
+{opt pi:list(numlist)}
+{opt r:ho(#)} 
+{opt ret:rospective}
+{opt e:ndline(#)}
+[{it:other_options}]
 
 {synoptset 20 tabbed}{...}
 {synopthdr}
@@ -33,6 +50,15 @@
 
 {pstd}
 {p_end}
+{synopt:{opt ret:rospective}}  specified when retrospective baseline data collection is required.
+
+{pstd}
+{p_end}
+{synopt:{opt e:ndline(#)}}  the cluster size (n_e) when retrospective data collection is selected (i.e. the baseline data of size n_b is retrospective).
+
+{syntab:Prospective options}
+{pstd}
+{p_end}
 {synopt:{opt propx:axis(numlist min=2  max=2)}}  the min and max ranges of the x axis for prospective baseline data graphs (proportions).
 
 {pstd}
@@ -43,14 +69,7 @@
 {p_end}
 {synopt:{opt propys:tep(numlist max=1)}}  the step on the y axis for prospective baseline data graphs.
 
-{pstd}
-{p_end}
-{synopt:{opt ret:rospective}}  specified when retrospective baseline data collection is required.
-
-{pstd}
-{p_end}
-{synopt:{opt e:ndline(#)}}  the cluster size (n_e) when retrospective data collection is selected (i.e. the baseline data of size n_b is retrospective).
-
+{syntab:Retrospective options}
 {pstd}
 {p_end}
 {synopt:{opt retx:axis(numlist min=2  max=2)}}  the min and max ranges of the x axis for retrospective baseline data graphs (ratios).
@@ -63,6 +82,7 @@
 {p_end}
 {synopt:{opt retys:tep(numlist max=1)}}  the step on the y axis for retrospective baseline data graphs.
 
+{syntab:General options}
 {pstd}
 {p_end}
 {synopt:{opt leg:endoptions(string)}}  user defined legend options, such as position and size.
@@ -79,7 +99,8 @@
 
 {pstd}
  {cmd:bcss} displays graphs examining the impact of varying amount of prospective/retrospective baseline data collection on cluster sample size with
- different cluster autocorrelation and intra-cluster correlation values.
+ different cluster autocorrelation and intra-cluster correlation values. 
+ See {help bcss##CopasHooper:Copas and Hooper} for details.
 
 {pstd}
  The user must specify either prospective (and total) or retrospective (and endline) in the syntax for prospective or retrospective baseline data collection respectively.
@@ -127,7 +148,7 @@ The legend position and size can be changed by the user, using standard legend s
 {title:References}
 {pstd}
 
-{pstd}
+{pstd}{marker CopasHooper}
 Copas, A. and Hooper, H.  Cluster randomised trials with baseline data: sample size and optimal designs (ref)
 
 
