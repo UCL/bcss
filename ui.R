@@ -1,12 +1,10 @@
-# test for github
 ####################################################################################
-# R (Shiny) prog to plot interactive chart for cRCTs with varying baseline data
+# R (Shiny)   user-interface program
+# prog to plot interactive chart for cRCTs with varying baseline data
 # R shiny app to accompany \"Cluster randomised trials with baseline data:sample size and optimal designs\" ,Copas and Hooper
 # Author: Kevin McGrath
 ####################################################################################
-#test git
-#NO tabs
-#x axis proportion
+
 
 #https://stackoverflow.com/questions/32969659/shiny-reactive-ggplot-output
 #for ggplot
