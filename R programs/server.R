@@ -39,6 +39,7 @@ server <- function(input,output,session){
   
   
   # prospective is select==1
+  # renderPlot for output
   output$plot2 <- renderPlot(
    { legends=paste0("pi= ",input$WCC)
    if ( (input$select=="1")   & (input$whichscale=="1") ) {  
@@ -51,8 +52,8 @@ server <- function(input,output,session){
      opt_x2 <- round((n*rho1*WCC2+rho1-1)/(rho1*n*(1+WCC2)),digits=4)
      opt_y2 <- round(eqprop(opt_x2),digits=4)
      nedf2 <- data.frame("x"=c(max(0,opt_x),max(0,opt_x2)),"y"=c(opt_y,opt_y2))
-     ggplot(data.frame(x=c(0,1)),aes(x=x,colour=legends))+ggtitle(paste("size=",input$n," ICC=",input$rho1," pi=",input$WCC[1]," ",input$WCC[2]))+
-      theme(plot.title = element_text(face="plain",size=12),panel.background=element_blank(),axis.line = element_line(colour="black")) +xlab("Baseline data - proportion of total") + ylab("Proportionate change in clusters required") + 
+     ggplot(data.frame(x=c(0,1)),aes(x=x,colour=legends))+ggtitle(paste("total cluster size=",input$n," ICC=",input$rho1))+
+      theme(plot.title = element_text(face="plain",size=12),panel.background=element_blank(),axis.line = element_line(colour="black")) +xlab("Baseline data as proportion of total") + ylab("Proportionate change in clusters required") + 
       stat_function(fun=eqprop,geom="line",aes(colour=legends) )+stat_function(fun=eqprop9,geom="line",aes(colour=legends),colour="red" )  +
       coord_cartesian(ylim=c(0.2,input$ytop))  + scale_colour_manual("", values = c("red", "blue")) +geom_point(data=nedf2,aes(x,y)) }                       
     else if (( input$select=="1") & (input$whichscale=="2") ) { 
@@ -65,17 +66,17 @@ server <- function(input,output,session){
       opt_x2 <- round((n*rho2*WCC2+rho2-1)/(rho2*n*(1+WCC2)),digits=4)
       opt_y2 <- round(R2eqprop(opt_x2),digits=4)
       nedf2 <- data.frame("x"=c(max(0,opt_x),max(0,opt_x2)),"y"=c(opt_y,opt_y2))
-    ggplot(data.frame(x=c(0,1)),aes(x=x,colour=legends))+ggtitle(paste("size=",input$n," ICC=",input$rho2," pi=",input$WCC[1]," ",input$WCC[2]))+
-      theme(plot.title = element_text(face="plain",size=12),panel.background=element_blank(),axis.line = element_line(colour="black")) +xlab("Baseline data - proportion of total") + ylab("Proportionate change in clusters required") + 
+    ggplot(data.frame(x=c(0,1)),aes(x=x,colour=legends))+ggtitle(paste("total cluster size=",input$n," ICC=",input$rho2 ))+
+      theme(plot.title = element_text(face="plain",size=12),panel.background=element_blank(),axis.line = element_line(colour="black")) +xlab("Baseline data as proportion of total") + ylab("Proportionate change in clusters required") + 
       stat_function(fun=R2eqprop,geom="line",aes(colour=legends ))+stat_function(fun=R2eqprop9,geom="line",colour="red",aes(colour=legends) )  +
       coord_cartesian(ylim=c(0,input$ytop)) + scale_colour_manual("", values = c("red", "blue")) +geom_point(data=nedf2,aes(x,y)) }                       
     else if ((input$select=="2") & (input$whichscale=="1")) { 
-      ggplot(data.frame(x=c(0,1)),aes(x=x,colour=legends))+ggtitle(paste("size =",input$n_retro,"ICC = ",input$rho1,"pi=",input$WCC[1]," ",input$WCC[2]))+
-        theme(plot.title = element_text(face="plain"),panel.background=element_blank(),axis.line = element_line(colour="black"))+ xlab("Baseline data - ratio to main trial data") + ylab("Proportionate change in clusters required") + stat_function(fun=eq,geom="line",aes(colour=legends)  )+stat_function(fun=eq9,geom="line",colour="green",aes(colour=legends))+
+      ggplot(data.frame(x=c(0,1)),aes(x=x,colour=legends))+ggtitle(paste("endline cluster size =",input$n_retro,"ICC = ",input$rho1))+
+        theme(plot.title = element_text(face="plain"),panel.background=element_blank(),axis.line = element_line(colour="black"))+ xlab("Baseline data as a ratio to endline") + ylab("Proportionate change in clusters required") + stat_function(fun=eq,geom="line",aes(colour=legends)  )+stat_function(fun=eq9,geom="line",colour="green",aes(colour=legends))+
         coord_cartesian(ylim=c(0,1)) + scale_colour_manual("", values = c("green", "orange")) }
     else if ((input$select=="2") & (input$whichscale=="2")) {
-      ggplot(data.frame(x=c(0,1)),aes(x=x,colour=legends))+ggtitle(paste("size =",input$n_retro,"ICC = ",input$rho2,"pi=",input$WCC[1]," ",input$WCC[2]))+
-        theme(plot.title = element_text(face="plain"),panel.background=element_blank(),axis.line = element_line(colour="black"))+ xlab("Baseline data - ratio to main trial data") + ylab("Proportionate change in clusters required") + stat_function(fun=R2eq,geom="line",aes(colour=legends) )+stat_function(fun=R2eq9,geom="line",colour="green",aes(colour=legends))+
+      ggplot(data.frame(x=c(0,1)),aes(x=x,colour=legends))+ggtitle(paste("endline cluster size =",input$n_retro,"ICC = ",input$rho2))+
+        theme(plot.title = element_text(face="plain"),panel.background=element_blank(),axis.line = element_line(colour="black"))+ xlab("Baseline data as a ratio to endline") + ylab("Proportionate change in clusters required") + stat_function(fun=R2eq,geom="line",aes(colour=legends) )+stat_function(fun=R2eq9,geom="line",colour="green",aes(colour=legends))+
         coord_cartesian(ylim=c(0,1)) + scale_colour_manual("", values = c("green", "orange")) }
     }
     ) 
@@ -126,15 +127,6 @@ server <- function(input,output,session){
  
         
   
-#https://stackoverflow.com/questions/38917101/how-do-i-show-the-y-value-on-tooltip-while-hover-in-ggplot2
-  #output$vals <- renderPrint({
-   # hover <- input$plot_hover 
-    ## print(str(hover)) # list
-    #y <- nearPoints(iris, input$plot_hover)[input$var_y]
-    #req(nrow(y) != 0)
-    #y
-    #})
-  
-#https://gitlab.com/snippets/16220
+
   
 
