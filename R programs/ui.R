@@ -3,6 +3,7 @@
 # prog to plot interactive chart for cRCTs with varying baseline data
 # R shiny app to accompany \"Cluster randomised trials with baseline data:sample size and optimal designs\" ,Copas and Hooper
 # Author: Kevin McGrath
+# updated 10 Juy 2019
 ####################################################################################
 
 
