@@ -3,6 +3,7 @@
 # R (Shiny) prog to plot interactive chart for cRCTs with varying baseline data
 # R shiny app to accompany \"Cluster randomised trials with baseline data:sample size and optimal designs\" ,Copas and Hooper
 # Author: Kevin McGrath
+# update 10 July 2019
 ####################################################################################
 
 # https://stackoverflow.com/questions/38372906/constrain-two-sliderinput-in-shiny-to-sum-to-100
