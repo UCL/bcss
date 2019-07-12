@@ -52,6 +52,11 @@ server <- function(input,output,session){
      opt_y <- round(eqprop9(opt_x),digits=4)
      opt_x2 <- round((n*rho1*WCC2+rho1-1)/(rho1*n*(1+WCC2)),digits=4)
      opt_y2 <- round(eqprop(opt_x2),digits=4)
+     #force negative x values to (0,1) 
+     if ( opt_x<0 ) {
+       opt_y <-1 } 
+     if ( opt_x2<0) {
+       opt_y2<-1}
      nedf2 <- data.frame("x"=c(max(0,opt_x),max(0,opt_x2)),"y"=c(opt_y,opt_y2))
      ggplot(data.frame(x=c(0,1)),aes(x=x,colour=legends))+ggtitle(paste("total cluster size=",input$n," ICC=",input$rho1))+
       theme(plot.title = element_text(face="plain",size=12),panel.background=element_blank(),axis.line = element_line(colour="black")) +xlab("Baseline data as proportion of total") + ylab("Proportionate change in clusters required") + 
@@ -66,6 +71,11 @@ server <- function(input,output,session){
       opt_y <- round(R2eqprop9(opt_x),digits=4)
       opt_x2 <- round((n*rho2*WCC2+rho2-1)/(rho2*n*(1+WCC2)),digits=4)
       opt_y2 <- round(R2eqprop(opt_x2),digits=4)
+      #force negative x values to (0,1) 
+      if ( opt_x<0 ) {
+        opt_y <-1 } 
+      if ( opt_x2<0) {
+        opt_y2<-1}
       nedf2 <- data.frame("x"=c(max(0,opt_x),max(0,opt_x2)),"y"=c(opt_y,opt_y2))
     ggplot(data.frame(x=c(0,1)),aes(x=x,colour=legends))+ggtitle(paste("total cluster size=",input$n," ICC=",input$rho2 ))+
       theme(plot.title = element_text(face="plain",size=12),panel.background=element_blank(),axis.line = element_line(colour="black")) +xlab("Baseline data as proportion of total") + ylab("Proportionate change in clusters required") + 
@@ -88,7 +98,7 @@ server <- function(input,output,session){
 # for prospective, calculate optimal value of x, try 
 # https://stackoverflow.com/questions/40997817/reactive-variables-in-shiny-for-later-calculations
 
-  #output the optimal point for prospective data , select = 1
+  #output the optimal point under the plot for prospective data , ie when select = 1
   output$text_calc <- renderText({  if (( input$select=="1") & ( input$whichscale=="1") )  {
      n <-input$n
      rho1 <-input$rho1
@@ -98,7 +108,17 @@ server <- function(input,output,session){
      opt_y <- round(eqprop9(opt_x),digits=4)
      opt_x2 <- round((n*rho1*WCC2+rho1-1)/(rho1*n*(1+WCC2)),digits=4)
      opt_y2 <- round(eqprop(opt_x2),digits=4)
-     nedf2 <- data.frame("x"=c(opt_x,opt_x2),"y"=c(opt_y,opt_y2))
+     
+     #If any of the x values are negative in order to prevent the plots showing negative x scale assign all (0,1).
+     if ( opt_x<0 ) {
+         opt_x <-0
+         opt_y <-1 } 
+     if ( opt_x2<0) {
+          opt_x2<-0
+          opt_y2<-1}
+    
+     
+     nedf2 <- data.frame( "x"=c(opt_x,opt_x2),"y"=c(opt_y,opt_y2))
      paste("Optimal (x,y) = (", opt_x,",",opt_y," ), (", opt_x2,",",opt_y2," )")}   
      #paste("Optimal (x,y) = (", opt_x2,",",opt_y2," ),")  }
      #paste("Optimal (x,y) = (", round((n*rho1*WCC1+rho1-1)/(rho1*n*(1+WCC1)),digits=4),",", round(eqprop(n*rho1*WCC1+rho1-1)/(rho1*n*(1+WCC1)),digits=4),")  ")  
@@ -112,6 +132,14 @@ server <- function(input,output,session){
       opt_y <- round(R2eqprop9(opt_x),digits=4)
       opt_x2 <- round((n*rho2*WCC2+rho2-1)/(rho2*n*(1+WCC2)),digits=4)
       opt_y2 <- round(R2eqprop(opt_x2),digits=4)
+      #If any of the x values are negative in order to prevent the plots showing negative x scale assign all (0,1).
+      if ( opt_x<0 ) {
+        opt_x <-0
+        opt_y <-1 } 
+      if ( opt_x2<0) {
+        opt_x2<-0
+        opt_y2<-1}
+      
       nedf2 <- data.frame("x"=c(opt_x,opt_x2),"y"=c(opt_y,opt_y2))
       paste("Optimal (x,y) = (", opt_x,",",opt_y," ), (", opt_x2,",",opt_y2," )")} 
       #paste("Optimal (x,y) = (", round((n*rho2*WCC+rho2-1)/(rho2*n*(1+WCC)),digits=4),",", round(eqprop(n*rho2*WCC+rho2-1)/(rho2*n*(1+WCC)),digits=4),")  ")  }
