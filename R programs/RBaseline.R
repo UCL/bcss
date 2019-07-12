@@ -2,6 +2,7 @@
 # R program converted from Shiny to output static report from the baseline data Shiny app
 # K McGrath Jan 2019
 # updated  10 Jul 2019
+# Note may be necessary to rerun the program if optimal data points do not appear on the lines    
 ############################################################################################
 
 
@@ -12,7 +13,7 @@ library(ggplot2)
 # hard code input values here,  select=1 for prospective, 2 for retrospective plots
 # comment out respective line
 
-input <- data.frame(rho=0.01, WCC1=0.5,WCC2=0.9,n=200, select=1,ytop=1.25,ybot=0.4)
+input <- data.frame(rho=0.01, WCC1=0.5,WCC2=0.9,n=10, select=1,ytop=1.25,ybot=0.4)
 #input <- data.frame(rho=0.1, WCC1=0.5,WCC2=0.9,n_retro=200,select=2,ytop=1.25,ybot=0)
 
 # eq,eq9 for retrospective 
@@ -74,11 +75,12 @@ if (( input$select=="1")  )  {
   Hopt_y<-round(eqpropf(Hopt_x,input$WCC2),digits=4)   
 
  #If any of the x values are negative in order to prevent the plots showing negative x scale assign all the optimal x's and y's to zero.
-  if ( Lopt_x<0 | Lopt_y <0 ) { 
-    Lopt_x =0
-    Lopt_y=0
+  if ( Lopt_x<0  ) { 
+    Lopt_x <-0
+    Lopt_y=1}
+  if (Hopt_x<0) {
     Hopt_x=0
-    Hopt_y=0 }
+    Hopt_y=1 }
   
 #need to create data set to plot opt points on ggplot,as parameter to geom_point 
 nedf <- data.frame("x"=c(Lopt_x,Hopt_x),"y"=c(Lopt_y,Hopt_y))
