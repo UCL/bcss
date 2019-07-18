@@ -2,5 +2,5 @@ v 3
 d Ella Marley-Zagar Stata software for Andrew Copas and Richard Hooper
 d for MRC CTU at UCL
 d
-d  Last updated 2nd April 2019
+d  Last updated 11~July 2019
 p bcss:  Baseline data Cluster Sample Size 
