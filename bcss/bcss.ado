@@ -1,3 +1,6 @@
+*! version 1.0.2 EMZ 11July2019  
+* Changed the graph titles, x and y axes labels to reflect the updates in the reviewed paper.
+
 *! version 1.0.1 EMZ 02April2019  
 *	Changed Theta_opt so that if it is negative, it will be set to zero.  
 *	Changed the graph legend so that only theta opt is shown (not the corresponding y value) 
@@ -243,7 +246,7 @@ local graph_n 1
 		
 		}
 		   
-graph twoway `aggregate_graphcommand' , ytitle("Ratio of clusters required") xtitle("Baseline data - proportion of total") 
+graph twoway `aggregate_graphcommand' , title("total cluster size=`total', ICC=`rho'") ytitle("Proportionate change in clusters required") xtitle("Baseline data as a proportion of total") 
 
 }
 			
@@ -317,7 +320,7 @@ local graph_n 1
 		
 		}
 		   
-graph twoway `aggregate_graphcommand2' , title("size=`endline', ICC=`rho'") ytitle("Ratio of clusters required") xtitle("Baseline data - ratio to endline data")  			
+graph twoway `aggregate_graphcommand2' , title("endline cluster size=`endline', ICC=`rho'") ytitle("Proportionate change in clusters required") xtitle("Baseline data as a ratio to endline")  			
 			
 }			
 			
