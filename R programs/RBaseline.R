@@ -13,8 +13,8 @@ library(ggplot2)
 # hard code input values here,  select=1 for prospective, 2 for retrospective plots
 # comment out respective line
 
-input <- data.frame(rho=0.01, WCC1=0.5,WCC2=0.9,n=10, select=1,ytop=1.25,ybot=0.4)
-#input <- data.frame(rho=0.1, WCC1=0.5,WCC2=0.9,n_retro=200,select=2,ytop=1.25,ybot=0)
+#input <- data.frame(rho=0.01, WCC1=0.5,WCC2=0.9,n=10, select=1,ytop=1.25,ybot=0.4)
+input <- data.frame(rho=0.1, WCC1=0.5,WCC2=0.9,n_retro=200,select=2,ytop=1.25,ybot=0)
 
 # eq,eq9 for retrospective 
 eq9<-function(x){ 1 - ((input$WCC1*input$WCC1*input$rho*input$rho*input$n_retro*input$n_retro*x)/((1+((input$n_retro-1)*input$rho))*(1+((((input$n_retro*x))-1)*input$rho)))) } 
