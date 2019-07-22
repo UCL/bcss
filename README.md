@@ -10,3 +10,6 @@ The software is provided in
 1. Stata, as program bcss (see folder "bcss")
 2. an R Shiny app available at 
 [Interactive charts](https://kmcgrath.shinyapps.io/Rprograms) (with source code in folder "R programs")
+
+## Installation
+
