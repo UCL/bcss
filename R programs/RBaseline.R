@@ -9,21 +9,29 @@
 library(ggplot2)
 # input variables
 
+
+
 # in order to select prospective or retrospective
 # hard code input values here,  select=1 for prospective, 2 for retrospective plots
+
 # comment out respective line
 
-#input <- data.frame(rho=0.01, WCC1=0.5,WCC2=0.9,n=10, select=1,ytop=1.25,ybot=0.4)
-input <- data.frame(rho=0.1, WCC1=0.5,WCC2=0.9,n_retro=200,select=2,ytop=1.25,ybot=0)
+#select=1 for prospective
+#input <- data.frame(rho=0.05, WCC1=0.5,WCC2=0.9,n=200, select=1,ytop=1.25,ybot=0.4)
+#select=2 for retrospective
+
+for (select in c(1,2)) {
+input <- data.frame(rho=0.05, WCC1=0.5,WCC2=0.9,n=200,select,ytop=1.25,ybot=0)
+
 
 # eq,eq9 for retrospective 
-eq9<-function(x){ 1 - ((input$WCC1*input$WCC1*input$rho*input$rho*input$n_retro*input$n_retro*x)/((1+((input$n_retro-1)*input$rho))*(1+((((input$n_retro*x))-1)*input$rho)))) } 
-#eq <-function(x){ 1 - ((input$WCC2*input$WCC2*input$rho*input$rho*input$n_retro*input$n_retro*x)/((1+((input$n_retro-1)*input$rho))*(1+((((input$n_retro*x))-1)*input$rho)))) }
+eq9<-function(x){ 1 - ((input$WCC1*input$WCC1*input$rho*input$rho*input$n*input$n*x)/((1+((input$n-1)*input$rho))*(1+((((input$n*x))-1)*input$rho)))) } 
+eq <-function(x){ 1 - ((input$WCC2*input$WCC2*input$rho*input$rho*input$n*input$n*x)/((1+((input$n-1)*input$rho))*(1+((((input$n*x))-1)*input$rho)))) }
 #try this for proportion it works!
 eqprop9<-function(x){ (1-input$rho+(input$n*input$rho*(1-x)))*(1/(1-x))*(1-((input$WCC1*input$WCC1*input$rho*input$rho*input$n*input$n*x*(1-x))/((1+(((input$n*(1-x))-1)*input$rho))*(1+(((input$n*x)-1)*input$rho)))))/(1+((input$n-1)*input$rho)) }
 eqprop<-function(x){ (1-input$rho+(input$n*input$rho*(1-x)))*(1/(1-x))*(1-((input$WCC2*input$WCC2*input$rho*input$rho*input$n*input$n*x*(1-x))/((1+(((input$n*(1-x))-1)*input$rho))*(1+(((input$n*x)-1)*input$rho)))))/(1+((input$n-1)*input$rho)) }
 
-#eqf <-function(x,pi){ 1 - ((pi*pi*input$rho*input$rho*input$n_retro*input$n_retro*x)/((1+((input$n_retro-1)*input$rho))*(1+((((input$n_retro*x))-1)*input$rho))))  } 
+#eqf <-function(x,pi){ 1 - ((pi*pi*input$rho*input$rho*input$n*input$n*x)/((1+((input$n-1)*input$rho))*(1+((((input$n*x))-1)*input$rho))))  } 
 eqpropf<-function(x,pi){ (1-input$rho+(input$n*input$rho*(1-x)))*(1/(1-x))*(1-((pi*pi*input$rho*input$rho*input$n*input$n*x*(1-x))/((1+(((input$n*(1-x))-1)*input$rho))*(1+(((input$n*x)-1)*input$rho)))))/(1+((input$n-1)*input$rho)) }
 
 #try titles
@@ -44,7 +52,7 @@ plot2 <- ({ if ( (input$select=="1") ) {
     }                      
 # retrospective select = 2
    else if ((input$select=="2") ) { 
-    ggplot(data.frame(x=c(0,1)),aes(x=x,colour=legends))+ggtitle(label=paste("endline cluster size =",input$n_retro,"ICC = ",input$rho,"pi=",input$WCC1," ",input$WCC2))+
+    ggplot(data.frame(x=c(0,1)),aes(x=x,colour=legends))+ggtitle(label=paste("endline cluster size =",input$n,"ICC = ",input$rho,"pi=",input$WCC1," ",input$WCC2))+
       theme(plot.title = element_text(face="plain",size=12,colour="black"),plot.subtitle = element_text(colour = "red"),legend.position = "top",panel.background=element_blank(),axis.line = element_line(colour="black"))+ xlab("Baseline data as a ratio to endline") + ylab("Proportionate change in clusters required") + 
        stat_function(fun=eq,geom="line",aes(colour=legends) )+stat_function(fun=eq9,geom="line",aes(colour=legends),colour="green")+
       # stat_function(fun=eqprop,geom="line",colour="low WCC")+stat_function(fun=eqprop9,geom="line",aes(colour="high WCC"))  +
@@ -86,7 +94,8 @@ if (( input$select=="1")  )  {
 nedf <- data.frame("x"=c(Lopt_x,Hopt_x),"y"=c(Lopt_y,Hopt_y))
 }
 
-
+#end select
+} 
 
 
 
