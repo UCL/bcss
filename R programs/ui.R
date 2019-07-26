@@ -75,8 +75,7 @@ ui <- fluidPage(
                    max=10,
                    step = 0.1,
                    value = 2)),
-    
-    #only show this scale if retrospective data chosen
+       #only show this scale if retrospective data chosen
     conditionalPanel(
       condition = "input.select == '2'",
       numericInput("n_retro",
@@ -84,7 +83,11 @@ ui <- fluidPage(
                    min = 10,
                    max=1000,
                    step = 10,
-                   value=200)  ) ),
+                   value=200)  ),
+   # radioButtons('format', 'Document format', c('PDF', 'HTML', 'Word'),
+   #              inline = TRUE),
+    downloadButton("report","download shiny Generate report") 
+    ),
   #only show this scale if prospective data chosen
   
   #for debugging

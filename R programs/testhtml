@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <script type="application/shiny-singletons"></script>
+  <script type="application/html-dependencies">json2[2014.02.04];jquery[1.12.4];shiny[1.2.0];ionrangeslider[2.1.6];strftime[0.9.2];selectize[0.11.2];font-awesome[5.3.1];bootstrap[3.3.7]</script>
+<script src="shared/json2-min.js"></script>
+<script src="shared/jquery.min.js"></script>
+<link href="shared/shiny.css" rel="stylesheet" />
+<script src="shared/shiny.min.js"></script>
+<link href="shared/ionrangeslider/css/ion.rangeSlider.css" rel="stylesheet" />
+<link href="shared/ionrangeslider/css/ion.rangeSlider.skinShiny.css" rel="stylesheet" />
+<script src="shared/ionrangeslider/js/ion.rangeSlider.min.js"></script>
+<script src="shared/strftime/strftime-min.js"></script>
+<link href="shared/selectize/css/selectize.bootstrap3.css" rel="stylesheet" />
+<!--[if lt IE 9]>
+<script src="shared/selectize/js/es5-shim.min.js"></script>
+<![endif]-->
+<script src="shared/selectize/js/selectize.min.js"></script>
+<link href="font-awesome-5.3.1/css/all.min.css" rel="stylesheet" />
+<link href="font-awesome-5.3.1/css/v4-shims.min.css" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="shared/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+<script src="shared/bootstrap/js/bootstrap.min.js"></script>
+<script src="shared/bootstrap/shim/html5shiv.min.js"></script>
+<script src="shared/bootstrap/shim/respond.min.js"></script>  <title>
+    <h4>R shiny app to accompany "Cluster randomised trials with different numbers of measurements at baseline and endline:sample size and optimal designs"   Copas and Hooper),
+  </h4>
+  </title>
+
+</head>
+
+<body>
+  <div class="container-fluid">
+    <h2>
+      <h4>R shiny app to accompany "Cluster randomised trials with different numbers of measurements at baseline and endline:sample size and optimal designs"   Copas and Hooper),
+  </h4>
+    </h2>
+    <div class="header" checked>
+      <em>The app displays the proportionate change in the number of clusters required for the trial due to collection of baseline data, which is either prospective (within the trial) or retrospective (collected before the trial and so not considered part of the trial sample size).</em>
+    </div>
+    <div class="col-sm-4">
+      <form class="well">
+        <div class="form-group shiny-input-container">
+          <label class="control-label" for="WCC">Range of autocorrelation, pi:</label>
+          <input class="js-range-slider" id="WCC" data-type="double" data-min="0" data-max="1" data-from="0.5" data-to="0.7" data-step="0.005" data-grid="true" data-grid-num="10" data-grid-snap="false" data-prettify-separator="," data-prettify-enabled="true" data-keyboard="true" data-drag-interval="true" data-data-type="number"/>
+        </div>
+        <div class="form-group shiny-input-container">
+          <label class="control-label" for="whichscale">Which scale would you like to use for ICC?</label>
+          <div>
+            <select id="whichscale"><option value="1" selected>0-0.1</option>
+<option value="2">0.1-1</option></select>
+            <script type="application/json" data-for="whichscale" data-nonempty="">{}</script>
+          </div>
+        </div>
+        <div data-display-if="input.whichscale == &#39;1&#39;" data-ns-prefix="">
+          <div class="form-group shiny-input-container">
+            <label class="control-label" for="rho1">Value of intra-cluster correlation, rho:</label>
+            <input class="js-range-slider" id="rho1" data-min="0" data-max="0.1" data-from="0.01" data-step="0.001" data-grid="true" data-grid-num="10" data-grid-snap="false" data-prettify-separator="," data-prettify-enabled="true" data-keyboard="true" data-data-type="number"/>
+          </div>
+        </div>
+        <div data-display-if="input.whichscale == &#39;2&#39;" data-ns-prefix="">
+          <div class="form-group shiny-input-container">
+            <label class="control-label" for="rho2">Value of intra-cluster correlation, rho:</label>
+            <input class="js-range-slider" id="rho2" data-min="0.1" data-max="1" data-from="0.1" data-step="0.01" data-grid="true" data-grid-num="10" data-grid-snap="false" data-prettify-separator="," data-prettify-enabled="true" data-keyboard="true" data-data-type="number"/>
+          </div>
+        </div>
+        <div class="form-group shiny-input-container">
+          <label class="control-label" for="select">Is the baseline data collected prospectively or retrospectively?</label>
+          <div>
+            <select id="select"><option value="1" selected>prospective baseline data collection</option>
+<option value="2">retrospective baseline data collection</option></select>
+            <script type="application/json" data-for="select" data-nonempty="">{}</script>
+          </div>
+        </div>
+        <div data-display-if="input.select == &#39;1&#39;" data-ns-prefix="">
+          <div class="form-group shiny-input-container">
+            <label for="n">total cluster size (baseline plus endline)</label>
+            <input id="n" type="number" class="form-control" value="200" min="10" max="1000" step="10"/>
+          </div>
+          <div class="form-group shiny-input-container">
+            <label for="ytop">Size of y-axis:</label>
+            <input id="ytop" type="number" class="form-control" value="2" min="0" max="10" step="0.1"/>
+          </div>
+        </div>
+        <div data-display-if="input.select == &#39;2&#39;" data-ns-prefix="">
+          <div class="form-group shiny-input-container">
+            <label for="n_retro">cluster size - endline data</label>
+            <input id="n_retro" type="number" class="form-control" value="200" min="10" max="1000" step="10"/>
+          </div>
+        </div>
+        <div id="format" class="form-group shiny-input-radiogroup shiny-input-container shiny-input-container-inline">
+          <label class="control-label" for="format">Document format</label>
+          <div class="shiny-options-group">
+            <label class="radio-inline">
+              <input type="radio" name="format" value="PDF" checked="checked"/>
+              <span>PDF</span>
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="format" value="HTML"/>
+              <span>HTML</span>
+            </label>
+            <label class="radio-inline">
+              <input type="radio" name="format" value="Word"/>
+              <span>Word</span>
+            </label>
+          </div>
+        </div>
+        <a id="downloadReport" class="btn btn-default shiny-download-link " href="" target="_blank" download>
+          <i class="fa fa-download"></i>
+          Download
+        </a>
+      </form>
+    </div>
+    <div class="col-sm-8">
+      <div id="plot2" class="shiny-plot-output" style="width: 100% ; height: 400px"></div>
+      <div id="text_calc" class="shiny-text-output"></div>
+    </div>
+  </div>
+</body>
+
+</html>

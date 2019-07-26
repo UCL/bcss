@@ -143,18 +143,54 @@ server <- function(input,output,session){
       nedf2 <- data.frame("x"=c(opt_x,opt_x2),"y"=c(opt_y,opt_y2))
       paste("Optimal (x,y) = (", opt_x,",",opt_y," ), (", opt_x2,",",opt_y2," )")} 
       #paste("Optimal (x,y) = (", round((n*rho2*WCC+rho2-1)/(rho2*n*(1+WCC)),digits=4),",", round(eqprop(n*rho2*WCC+rho2-1)/(rho2*n*(1+WCC)),digits=4),")  ")  }
-  }
+  })
   #render end below
- )
- 
+   output$downloadReport <- downloadHandler(
+     # For PDF output, change this to "report.pdf"
+     filename = "report.html",
+     
+     content = function(file) {
+      
+       src <- normalizePath('report.Rmd')
+       
+       # temporarily switch to the temp dir, in case you do not have write
+       # permission to the current working directory
+       owd <- setwd(tempdir())
+       on.exit(setwd(owd))
+       file.copy(src, 'report.Rmd', overwrite = TRUE)
+       
+       library(rmarkdown)
+       out <- render('report.Rmd', switch(
+         input$format,
+         PDF = pdf_document(), HTML = html_document(), Word = word_document()
+       ))
+       file.rename(out, file)
+     }  
+        # Copy the report file to a temporary directory before processing it, in
+       # case we don't have write permissions to the current working dir (which
+       # can happen when deployed).
+      # tempReport <- file.path(tempdir(), "report.Rmd")
+       #file.copy("report.Rmd", tempReport, overwrite = TRUE)
+       
+       # Set up parameters to pass to Rmd document
+       #params <- list(n = input$sliderInput)
+       
+       # Knit the document, passing in the `params` list, and eval it in a
+       # child of the global environment (this isolates the code in the document
+       # from the code in this app).
+      # rmarkdown::render(tempReport, output_file = file,
+       #                  params = params,
+        #                 envir = new.env(parent = globalenv())
+       )
+     }
+
+# extra ) for handler
+  
   
 
-   
-}  
-
   
  
-        
+    
   
 
   
