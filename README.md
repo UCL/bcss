@@ -1,3 +1,4 @@
+![mrcctu logo](mrcctu.png)
 # Sample size for cluster randomised trials with baseline data
 
 This repository contains software to support the paper "Cluster randomised trials with baseline data: sample size and optimal designs" by Andrew Copas and Richard Hooper (under review). 
