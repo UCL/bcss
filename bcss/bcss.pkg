@@ -1,0 +1,15 @@
+v 3
+d bcss: Baseline data Cluster Sample Size 
+d Program by Ella Marley-Zagar.
+d A program to generate plots examining the impact of varying amount of prospective/retrospective baseline data collection 
+d on cluster sample size with
+d different cluster autocorrelation and intra-cluster correlation values
+
+d Version 1.0.2
+d Distribution-Date: 18/07/2019
+d Author : Ella Marley-Zagar, MRC CTU at UCL  paper by Andrew Copas and Richard Hooper, 
+
+
+f bcss.ado
+f bcss.sthlp
+
