@@ -22,7 +22,7 @@ the latest version of the package can be installed directly from github.com  usi
 'net install github, from("https://haghish.github.io/github/")' )
 
 Alternatively to install bcss 
-from the Statistical Software Components (SSC) archive
+from the Statistical Software Components (SSC) archive using the Stata command ssc
 
 .ssc install bcss
 
