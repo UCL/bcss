@@ -1,7 +1,7 @@
 ![mrcctu logo](mrcctulogoucl.png)
 # Sample size for cluster randomised trials with baseline data
 ## bcss: Baseline data Cluster Sample Size
-This repository contains software to support the paper "Cluster randomised trials with baseline data: sample size and optimal designs" by Andrew Copas and Richard Hooper. 
+This repository contains software to support the paper "Cluster randomised trials with baseline data: sample size and optimal designs" by Andrew Copas and Richard Hooper  - currently pending publication in 'Statistics in Medicine'. 
 
 The paper shows how to choose the extent of baseline data collection (as a proportion of the whole) under retrospective and prospective data collection.
 
@@ -19,7 +19,7 @@ the latest version of the package can be installed directly from github.com  usi
 .github  install UCL/bcss
 
 (note: to install the github package within Stata need to run
-net install github, from("https://haghish.github.io/github/") )
+'net install github, from("https://haghish.github.io/github/")' )
 
 Alternatively to install bcss 
 from the Statistical Software Components (SSC) archive
@@ -29,7 +29,7 @@ from the Statistical Software Components (SSC) archive
 
 ## Contact 
 
-Dr Andrew J Copas1
+Dr Andrew J Copas<sup>1</sup>
 
 London Hub for Trials Methodology Research
 
@@ -41,7 +41,7 @@ Centre for Primary Care and Public Health,
 
 Queen Mary University of London
 
-1Address for correspondence:
+<sup>1</sup>Address for correspondence:
 
 90 High Holborn
 
