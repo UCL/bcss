@@ -1,6 +1,6 @@
-![mrcctu logo](mrcctu.png)
+![mrcctu logo](mrcctulogoucl.png)
 # Sample size for cluster randomised trials with baseline data
-## bcss: Baseline data Cluster Sample
+## bcss: Baseline data Cluster Sample Size
 This repository contains software to support the paper "Cluster randomised trials with baseline data: sample size and optimal designs" by Andrew Copas and Richard Hooper. 
 
 The paper shows how to choose the extent of baseline data collection (as a proportion of the whole) under retrospective and prospective data collection.
