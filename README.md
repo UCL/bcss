@@ -18,12 +18,11 @@ the latest version of the package can be installed directly from github.com  usi
 
 .github  install UCL/bcss
 
-note: to install the github package within Stata need to run 
+(note: to install the github package within Stata need to run
+net install github, from("https://haghish.github.io/github/") )
 
-net install github, from("https://haghish.github.io/github/")
-
-Alternatively 
-From the Statistical Software Components (SSC) archive
+Alternatively to install bcss 
+from the Statistical Software Components (SSC) archive
 
 .ssc install bcss
 
