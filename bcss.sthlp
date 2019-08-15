@@ -155,10 +155,21 @@ Copas, A. and Hooper, H.  Cluster randomised trials with baseline data: sample s
 
 
 {title:Author}
-{p}
+{pstd}
 
 Ella Marley-Zagar, MRC Clinical Trials Unit, University College London.
 
 Email {browse "mailto:e.marley-zagar@ucl.ac.uk":e.marley-zagar@ucl.ac.uk}
+
+
+{title:Further note: installation from Github}
+{pstd}
+
+Please note the latest version of bcss can be found at {browse "https://github.com/UCL/bcss/"}
+
+The bcss.ado file can be installed within Stata directly from github by typing:
+
+net install github, from("https://haghish.github.io/github/")
+github install UCL/bcss
 
 
