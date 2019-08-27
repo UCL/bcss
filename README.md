@@ -1,5 +1,5 @@
 
-<a href="https://www.ctu.mrc.ac.uk"><img src="mrcctu.png" width="400"/> <a href="https://www.ucl.ac.uk"><img src="ucl.png" width="355"/>
+<a href="https://www.ctu.mrc.ac.uk"><img src="mrcctu.png" width="400"/> <img src="ucl.png" width="355"/>
 
 
 # Sample size for cluster randomised trials with baseline data
@@ -13,7 +13,7 @@ The software provides interactive plots of relative efficiency against the exten
 The software is provided as 
 <ul>
 <li><p>Stata ado program, bcss</p></li>    
-<li><p>an R Shiny app available at [Interactive charts](https://kmcgrath.shinyapps.io/Rprograms) with source code in folder "R programs"</p></li>
+<li><p>an R Shiny app available at <a ref="https://kmcgrath.shinyapps.io/Rprograms"><img  src="mrcctu.png"> with source code in folder "R programs"</p></li>
 </ul>  
 
 ## Installation
