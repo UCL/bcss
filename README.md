@@ -1,7 +1,6 @@
-![mrcctu logo](mrcctu.png)
-<p align="right">
-  <img src="https://github.com/UCL/bcss/master/mrcctu.png" >
-</p>
+
+<img src="mrcctu.png" width="400"/> <img src="ucl.png" width="255"/>
+
 
 # Sample size for cluster randomised trials with baseline data
 ## bcss: Baseline data Cluster Sample Size
