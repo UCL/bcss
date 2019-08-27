@@ -11,8 +11,9 @@ The paper shows how to choose the extent of baseline data collection (as a propo
 The software provides interactive plots of relative efficiency against the extent of baseline data collection. The user may vary the sample size, cluster autocorrelation and intra-cluster correlation.
 
 The software is provided as 
-Stata ado program, bcss    
-an R Shiny app available at [Interactive charts](https://kmcgrath.shinyapps.io/Rprograms) (with source code in folder "R programs")
+
+1. Stata ado program, bcss    
+2. an R Shiny app available at [Interactive charts](https://kmcgrath.shinyapps.io/Rprograms) with source code in folder "R programs"
 
 ## Installation
 
