@@ -13,7 +13,7 @@ The software provides interactive plots of relative efficiency against the exten
 The software is provided as 
 
 1. Stata ado program, bcss    
-2. an R Shiny app available at [Interactive charts](https://kmcgrath.shinyapps.io/Rprograms) with source code in folder "R programs"
+2. an R Shiny app available at [Interactive charts]<a href="https://kmcgrath.shinyapps.io/Rprograms"> with source code in folder "R programs"
 
 ## Installation
 
