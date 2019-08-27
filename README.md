@@ -1,5 +1,5 @@
 
-<img src="mrcctu.png" width="400"/> <img src="ucl.png" width="255"/>
+<img src="mrcctu.png" width="400"/> <img src="ucl.png" width="355"/>
 
 
 # Sample size for cluster randomised trials with baseline data
