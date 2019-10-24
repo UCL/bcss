@@ -3,7 +3,7 @@
 
 # Sample size for cluster randomised trials with baseline data
 ## bcss: Baseline data Cluster Sample Size
-This repository contains software to support the paper "Cluster randomised trials with baseline data: sample size and optimal designs" by Andrew Copas and Richard Hooper  - currently pending publication in 'Statistics in Medicine'. 
+This repository contains software to support the paper Copas AJ and Hooper R "Cluster randomised trials with different numbers of measurements at baseline and endline: Sample size and optimal allocation". Clinical Trials https://journals.sagepub.com/doi/full/10.1177/1740774519873888. 
 
 The paper shows how to choose the extent of baseline data collection (as a proportion of the whole) under retrospective and prospective data collection.
 
