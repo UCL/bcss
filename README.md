@@ -1,4 +1,4 @@
-![MRCCTU at UCL Logo](MRCCTU_at_UCL_Logo.png)
+<img src="MRCCTU_at_UCL_Logo.png" width="50%" />
 
 # Sample size for cluster randomised trials with baseline data
 ## bcss: Baseline data Cluster Sample Size
