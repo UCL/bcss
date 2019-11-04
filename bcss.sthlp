@@ -151,7 +151,7 @@ The legend position and size can be changed by the user, using standard legend s
 {pstd}
 
 {pstd}{marker CopasHooper}
-Copas, A. and Hooper, H.  Cluster randomised trials with baseline data: sample size and optimal designs (title and ref to be updated)
+Copas AJ and Hooper R. Cluster randomised trials with different numbers of measurements at baseline and endline: Sample size and optimal allocation. Clinical Trials {browse "https://journals.sagepub.com/doi/full/10.1177/1740774519873888"}
 
 
 {title:Author}
